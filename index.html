@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>WeatherNow | Weather App</title>
+
+        <meta name="description" content="Check real-time weather, temperature, humidity, wind speed and more.">
+
+        <link rel="stylesheet" href="style.css">
+
+
+    </head>
+
+    <body>
+
+        <div class="app-container">
+
+            <!-- HEADER -->
+            <header class="header">
+
+                <a href="#" class="logo">
+                    <span class="logo-icon">🌤️</span>
+                    <span>Weather<span class="logo-highlight">Now</span></span>
+                </a>
+
+                <button id="themeToggle" class="theme-toggle" type="button">
+                    <span id="themeIcon">☀️</span>
+                    <span id="themeLabel">Light mode</span>
+                </button>
+
+            </header>
+
+
+            <!-- INTRODUCTION -->
+            <section class="intro">
+
+                <p class="eyebrow">YOUR WEATHER COMPANION</p>
+
+                <h1>Discover the weather<br>
+                    <span>around you.</span>
+                </h1>
+
+                <p class="intro-description">
+                    Real-time weather information for your favourite places.
+                </p>
+
+            </section>
+
+
+            <!-- SEARCH -->
+            <section class="search-section">
+
+                <form id="searchForm" class="search-form">
+
+                    <span class="search-icon">⌕</span>
+
+                    <input type="text" id="cityInput" placeholder="Search city, e.g. Delhi" aria-label="Enter city name"
+                        autocomplete="off" maxlength="100" required>
+
+                    <button type="submit" id="searchBtn" class="search-btn">
+                        Search
+                    </button>
+
+                </form>
+
+                <button id="locationBtn" class="location-btn" type="button">
+                    📍 Use my current location
+                </button>
+
+            </section>
+
+
+            <!-- ERROR MESSAGE -->
+            <div id="errorMessage" class="error-message hidden" role="alert"></div>
+
+
+            <!-- LOADING -->
+            <div id="loading" class="loading hidden" role="status">
+                <div class="spinner"></div>
+                <p>Getting the latest weather...</p>
+            </div>
+
+
+            <!-- EMPTY STATE -->
+            <section id="emptyState" class="empty-state">
+
+                <div class="empty-icon">🌍</div>
+
+                <h2>Explore the weather</h2>
+
+                <p>Search for a city to see its current weather conditions.</p>
+
+                <div class="suggestion-list">
+                    <button class="suggestion-btn" data-city="Delhi" type="button">
+                        Delhi
+                    </button>
+
+                    <button class="suggestion-btn" data-city="Mumbai" type="button">
+                        Mumbai
+                    </button>
+
+                    <button class="suggestion-btn" data-city="London" type="button">
+                        London
+                    </button>
+
+                    <button class="suggestion-btn" data-city="Tokyo" type="button">
+                        Tokyo
+                    </button>
+                </div>
+
+            </section>
+
+
+            <!-- WEATHER RESULTS -->
+            <main id="weatherSection" class="weather-section hidden">
+
+                <!-- MAIN WEATHER CARD -->
+                <section class="weather-hero">
+
+                    <div class="hero-top">
+
+                        <div>
+                            <p class="card-label">CURRENT WEATHER</p>
+
+                            <h2 id="cityName">Delhi</h2>
+
+                            <p id="countryName" class="country-name"></p>
+                        </div>
+
+                        <div class="weather-icon" id="weatherIcon">🌤️</div>
+
+                    </div>
+
+
+                    <div class="temperature-container">
+
+                        <div class="temperature">
+                            <span id="temperature">--</span><span class="degree">°C</span>
+                        </div>
+
+                        <p id="weatherDescription" class="weather-description">
+                            Weather condition
+                        </p>
+
+                        <p class="feels-like">
+                            Feels like <span id="feelsLike">--°C</span>
+                        </p>
+
+                    </div>
+
+
+                    <div class="hero-footer">
+
+                        <div>
+                            <span class="footer-label">LOCAL DATE</span>
+                            <p id="date">--</p>
+                        </div>
+
+                        <div>
+                            <span class="footer-label">LOCAL TIME</span>
+                            <p id="time">--</p>
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- WEATHER DETAILS -->
+                <section class="details-section">
+
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">WEATHER AT A GLANCE</p>
+                            <h2>Today's conditions</h2>
+                        </div>
+                    </div>
+
+
+                    <div class="details-grid">
+
+                        <article class="detail-card">
+
+                            <div class="detail-top">
+                                <span class="detail-icon">🌡️</span>
+                                <span class="detail-label">FEELS LIKE</span>
+                            </div>
+
+                            <p class="detail-value">
+                                <span id="feelsLikeCard">--</span><span>°C</span>
+                            </p>
+
+                            <p class="detail-description">Perceived temperature</p>
+
+                        </article>
+
+
+                        <article class="detail-card">
+
+                            <div class="detail-top">
+                                <span class="detail-icon">💧</span>
+                                <span class="detail-label">HUMIDITY</span>
+                            </div>
+
+                            <p class="detail-value">
+                                <span id="humidity">--</span><span>%</span>
+                            </p>
+
+                            <p class="detail-description">Moisture in the air</p>
+
+                        </article>
+
+
+                        <article class="detail-card">
+
+                            <div class="detail-top">
+                                <span class="detail-icon">💨</span>
+                                <span class="detail-label">WIND SPEED</span>
+                            </div>
+
+                            <p class="detail-value">
+                                <span id="windSpeed">--</span><span> km/h</span>
+                            </p>
+
+                            <p class="detail-description">Current wind speed</p>
+
+                        </article>
+
+
+                        <article class="detail-card">
+
+                            <div class="detail-top">
+                                <span class="detail-icon">📊</span>
+                                <span class="detail-label">PRESSURE</span>
+                            </div>
+
+                            <p class="detail-value">
+                                <span id="pressure">--</span><span> hPa</span>
+                            </p>
+
+                            <p class="detail-description">Atmospheric pressure</p>
+
+                        </article>
+
+
+                        <article class="detail-card">
+
+                            <div class="detail-top">
+                                <span class="detail-icon">👁️</span>
+                                <span class="detail-label">VISIBILITY</span>
+                            </div>
+
+                            <p class="detail-value">
+                                <span id="visibility">--</span><span> km</span>
+                            </p>
+
+                            <p class="detail-description">Viewing distance</p>
+
+                        </article>
+
+
+                        <article class="detail-card">
+
+                            <div class="detail-top">
+                                <span class="detail-icon">☁️</span>
+                                <span class="detail-label">CLOUD COVER</span>
+                            </div>
+
+                            <p class="detail-value">
+                                <span id="cloudCover">--</span><span>%</span>
+                            </p>
+
+                            <p class="detail-description">Sky coverage</p>
+
+                        </article>
+
+                    </div>
+
+                </section>
+
+
+                <!-- SEARCH HISTORY -->
+                <section class="history-section">
+
+                    <div class="history-heading">
+
+                        <div>
+                            <p class="eyebrow">YOUR PLACES</p>
+                            <h2>Recent searches</h2>
+                        </div>
+
+                        <button id="clearHistoryBtn" class="clear-btn" type="button">
+                            Clear history
+                        </button>
+
+                    </div>
+
+                    <div id="historyList" class="history-list"></div>
+
+                </section>
+
+            </main>
+
+
+            <!-- FOOTER -->
+            <footer class="footer">
+
+                <p>Made with ☁️ by WeatherNow</p>
+
+                <p>Weather data provided by OpenWeather.</p>
+
+            </footer>
+
+        </div>
+        <script src="script.js"></script>
+
+    </body>
+
+</html>
